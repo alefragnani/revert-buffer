@@ -10,10 +10,7 @@ module.exports =
 
     atom.commands.add 'atom-text-editor', 'revert-buffer:revert-all', ->
       fs = require 'fs'
-      for editor in atom.workspace.getTextEditors()
-        console.log('editor: ' + editor.getPath())
+      atom.workspace.getTextEditors().forEach (editor) ->
         if editor?.getPath()
-          console.log('editor.if: ' + editor.getPath())
           fs.readFile editor.getPath(), (error, contents) ->
-            console.log('editor.->: ' + editor.getPath())
             editor.setText(contents.toString()) unless error
