@@ -36,6 +36,8 @@ describe "RevertBuffer", ->
 
       waitsForPromise ->
         atom.workspace.open(filePath1)
+      
+      waitsForPromise ->
         atom.workspace.open(filePath2)
 
       runs ->
@@ -47,4 +49,6 @@ describe "RevertBuffer", ->
 
       waitsFor ->
         editor1.getText() is "Original Recipe 1"
+      
+      waitsFor ->
         editor2.getText() is "Original Recipe 2"
